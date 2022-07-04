@@ -13,7 +13,7 @@ spec:
   triggers:
   - type: aws-sqs-queue
     metadata:
-      queueURL: https://sqs.us-west-1.amazonaws.com/070866847466/test-sqs
+      queueURL: https://sqs.us-west-1.amazonaws.com/test-account/test-sqs
       queueLength: "2"
       awsRegion: "us-west-1"
       identityOwner: operator
