@@ -2,7 +2,7 @@
 
 
 ## What is KEDA? 
-KEDA is a Kubernetes-based Event Driven Autoscaler. With KEDA, you can drive the scaling of any container in Kubernetes based on the number of events needing to be processed.
+[KEDA]((https://keda.sh/docs/2.7/concepts/)) is a Kubernetes-based Event Driven Autoscaler. With KEDA, you can drive the scaling of any container in Kubernetes based on the number of events needing to be processed.
 
 KEDA is a single-purpose and lightweight component that can be added into any Kubernetes cluster. KEDA works alongside standard Kubernetes components like the Horizontal Pod Autoscaler and can extend functionality without overwriting or duplication. With KEDA you can explicitly map the apps you want to use event-driven scale, with other apps continuing to function. This makes KEDA a flexible and safe option to run alongside any number of any other Kubernetes applications or frameworks.
 
@@ -11,6 +11,11 @@ KEDA uses the metrics obtained by the keda operator metrics apiserver. With thes
 
 ![ ](./keda-sqs.png)
 
+## Use Case:
+Kubernetes Horizontal Pod Autoscaler (HPA) is a wonderful thing, but scaling only by CPU and memory metrics is just not enough in certain occasions.
+
+Let’s say you have an SQS queue and you want to scale your pods by its length. The native HPA does not have support for this. That’s where KEDA comes in. 
+KEDA is a Kubernetes based Event Driven Autoscaler that works alongside the HPA to scale your pods by specific metrics or events. In this case, we’ll scale our pods by queue length.
 
 ## Prerequisites:
 1. EKS Cluster
