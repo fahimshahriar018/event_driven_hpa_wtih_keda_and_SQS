@@ -31,11 +31,11 @@ KEDA is a Kubernetes based Event Driven Autoscaler that works alongside the HPA 
 
 Before deploying KEDA we need to do some configurations:
 
-* Create an IAM role with correct permission to get queue attribute for the keda-operator service account.
+* Create an IAM role with correct permission to get queue attribute for the ```keda-operator``` service account.
 * Assign that role to the service account.
 
 #### IAM policy:
-This is the policy the operator needs to set for keda-operator service account IAM Role.
+This is the policy the operator needs to set for ```keda-operator ```service account IAM Role.
 ```
 {
     "Version": "2012-10-17",
@@ -51,7 +51,7 @@ This is the policy the operator needs to set for keda-operator service account I
 #### IAM Role:
 This role uses the policy we created in the previous step.
 
-Once the role is created, we need to update the Trusted entities to associate the service account keda-operator to the role. Here’s the JSON:
+Once the role is created, we need to update the Trusted entities to associate the service account ```keda-operator``` to the role. Here’s the JSON:
 ```
 {
   "Version": "2012-10-17",
@@ -362,6 +362,7 @@ $ kubectl get pods -n keda
 If we have deployed our application earlier, we can skip this step. Otherwise, deploy a test ```nginx``` deployment in ```kube-test``` namespace:
 ``` 
 $ kubectl create ns keda-test
+$ kubectl create deployment nginx-deployment --image nginx -n keda-test
 ```
 Check deployments status:
 ```
@@ -382,13 +383,13 @@ spec:
   minReplicaCount: 0  # We don't want pods if the queue is empty
   maxReplicaCount: 5  # We don't want to have more than 5 replicas
   pollingInterval: 10 # How frequently we should go for metrics (in seconds)
-  cooldownPeriod:  120 # How many seconds should we wait for downscale  
+  cooldownPeriod:  20 # How many seconds should we wait for downscale  
   triggers:
   - type: aws-sqs-queue
     metadata:
-      queueURL: https://sqs.us-west-1.amazonaws.com/12345678/<SQS-ARN>
+      queueURL: <SQS-URL>
       queueLength: "2"
-      awsRegion: "us-west-1"
+      awsRegion: "<Queue-Region>"
       identityOwner: operator
 
 ```

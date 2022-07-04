@@ -60,7 +60,7 @@ serviceAccount:
   name: keda-operator
   # Annotations to add to the service account
   annotations:
-    eks.amazonaws.com/role-arn: "arn:aws:iam::070866847466:role/keda-operator"
+    eks.amazonaws.com/role-arn: "<IAM-ROLE-ARN>"
 
 podIdentity:
   activeDirectory:
