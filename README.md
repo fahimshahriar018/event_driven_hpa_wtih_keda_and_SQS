@@ -2,7 +2,7 @@
 
 
 ## What is KEDA? 
-[KEDA]((https://keda.sh/docs/2.7/concepts/)) is a Kubernetes-based Event Driven Autoscaler. With KEDA, you can drive the scaling of any container in Kubernetes based on the number of events needing to be processed.
+[KEDA](https://keda.sh/docs/2.7/concepts/) is a Kubernetes-based Event Driven Autoscaler. With KEDA, you can drive the scaling of any container in Kubernetes based on the number of events needing to be processed.
 
 KEDA is a single-purpose and lightweight component that can be added into any Kubernetes cluster. KEDA works alongside standard Kubernetes components like the Horizontal Pod Autoscaler and can extend functionality without overwriting or duplication. With KEDA you can explicitly map the apps you want to use event-driven scale, with other apps continuing to function. This makes KEDA a flexible and safe option to run alongside any number of any other Kubernetes applications or frameworks.
 
@@ -72,7 +72,7 @@ Once the role is created, we need to update the Trusted entities to associate th
   ]
 }
 ```
-## 2. Deploy Keda:
+### 2. Deploy Keda:
 We will deploy KEDA using helm. To obtain the default chart values, you can execute these commands:
 ```
  $ helm repo add kedacore https://kedacore.github.io/charts
@@ -344,7 +344,7 @@ To deploy KEDA, we only execute:
 ```
 $ helm install keda kedacore/keda --values values.yaml --namespace keda 
 ```
-### Output:
+#### Output:
 ```
 NAME: keda
 LAST DEPLOYED: Mon Jan 3 9:42:31 2022
@@ -358,7 +358,7 @@ After a few seconds, you should have everything up and running. Check out by thi
 ```
 $ kubectl get pods -n keda
 ```
-## 3. Deploy Application:
+### 3. Deploy Application:
 If we have deployed our application earlier, we can skip this step. Otherwise, deploy a test ```nginx``` deployment in ```kube-test``` namespace:
 ``` 
 $ kubectl create ns keda-test
@@ -369,7 +369,7 @@ Check deployments status:
 $ kubectl get pods -n kube-test
 ```
 
-## Deploy SQS Scaler:
+### 4. Deploy SQS Scaler:
 create ``` sqs-scaler.yaml``` file with this :
 ```
 apiVersion: keda.sh/v1alpha1
@@ -398,17 +398,17 @@ In this file, we used ```identityOwner: operator```  in ```triggers.metada``` to
 
 If you set minReplicaCount ≠ 0, the cooldownPeriod is 5 minutes, since the scaling from 1 ↔ N is handled by the HPA, you can check this issue for more info: [Issue #737](https://github.com/kedacore/keda/issues/737).
 
-### Let's Apply this configuration:
+#### Let's Apply this configuration:
 ```
 $ kubectl apply -f keda-resources.yaml
 ```
-### Output:
+#### Output:
 ``` 
 scaledobject.keda.sh/aws-sqs-queue-scaledobject created
 triggerauthentication.keda.sh/keda-aws-credentials created
 ```
 
-## 5. Test
+### 5. Test
 Here you can type any message you want and send it to the queue. Since our scaledObject has a length of 2, we need to send 3 messages for our deployment to scale up to 2 pods.
 
 
