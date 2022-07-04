@@ -35,7 +35,7 @@ Before deploying KEDA we need to do some configurations:
 * Assign that role to the service account.
 
 #### IAM policy:
-This is the policy the operator needs to set for ```keda-operator ```service account IAM Role.
+This is the policy the operator needs to set for ```keda-operator```service account IAM Role.
 ```
 {
     "Version": "2012-10-17",
