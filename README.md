@@ -424,11 +424,11 @@ nginx-deployment-84cd76b964-475bt   1/1     Running   0          15s
 nginx-deployment-84cd76b964-rw4zt   1/1     Running   0          3m
 ```
 Remember that our polling time is 10 seconds, so count to 10 if nothing happens 😉
+And that’s it! Our deployment just scaled up 🎉 .
 
-And that’s it! Our deployment just scaled up 🎉
-
-To see if it scales down, you need to receive and delete the messages, so scroll down and click on Poll for messages:
+#### To see if it scales down, you need to receive and delete the messages, so scroll down and click on Poll for messages:
 ![](./delete-message.png)
+![](./after-delete-mesasge-sqs.png)
 
 
 
@@ -437,7 +437,7 @@ After receiving all the messages, your deployment should scale down to zero:
 $ kubectl get pods -n keda-test
 No resources found in keda-test namespace.
 ```
-And that’s it! If you made it to this point, it means you successfully deployed and tested KEDA with SQS 🎉.
+And that’s it! It means you have successfully deployed and tested KEDA with SQS 🎉.
 
 ## Reference:
 1. [IAM Role for Service accounts](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html)
