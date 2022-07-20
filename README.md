@@ -76,7 +76,7 @@ Once the role is created, we need to update the Trusted entities to associate th
 We will deploy KEDA using helm. To obtain the default chart values, you can execute these commands:
 ```
  $ helm repo add kedacore https://kedacore.github.io/charts
- $ helm update repo
+ $ helm  repo update
  $ helm show values kedacore/keda > values.yaml
  ```
 We need to modify default ```values.yaml ```file to add iam role in service account for KEDA which we have created. Now we just add:
